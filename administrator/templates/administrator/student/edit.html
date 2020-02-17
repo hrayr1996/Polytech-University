@@ -1,0 +1,69 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Ավելացնել ուսանող</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+            <input type="text" name="firstname" id="name" value="{{ student.firstName }}" size="22">
+            <label for="name"><small>Անուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input type="text" name="lasttname" id="name" value="{{ student.lastName }}" size="22">
+            <label for="name"><small>Ազգանուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input type="text" name="hayranun" id="name" value="{{ student.hayranun }}" size="22">
+            <label for="name"><small>Հայրանուն (Պարտադիր*)</small></label>
+          </p>
+            <p>
+                <select name="group" id="">
+                    {% for group in groups %}
+                        <option value="{{ group.id }}" {% if group.id == student.group.id %}selected{% endif %}>{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="email"><small>Խումբ (Պարտադիր*)</small></label>
+            </p>
+          <p>
+            <input type="date" name="birthday" id="id_birthday" value="{{ student.birthday }}" size="22">
+            <label for="id_birthday"><small>Ծննդյան ամսաթիվ</small></label>
+          </p>
+          <p>
+            <input type="date" name="joindate" id="id_joindate" value="{{ student.joindate }}" size="22">
+            <label for="id_joindate"><small>Ընդունման ամսաթիվ</small></label>
+          </p>
+          <p>
+            <input type="email" name="email" id="id_email" value="{{ student.email }}" size="22">
+            <label for="id_email"><small>Էլ-Փոստ</small></label>
+          </p>
+          <p>
+            <input type="number" name="phone" id="id_phone" value="{{ student.phone }}" size="22">
+            <label for="id_phone"><small>Հեռախոսահամար</small></label>
+          </p>
+          <p>
+            <input type="number" name="studyprice" id="id_studyprice" value="{{ student.studyprice }}" size="22">
+            <label for="id_studyprice"><small>Վճար</small></label>
+          </p>
+          <p>
+            <input type="checkbox" name="petpatver" id="id_petpatver"  {% if student.petpatver %}checked{% endif %} size="22">
+            <label for="id_petpatver"><small>Պետպատվեր</small></label>
+          </p>
+          <p>
+              Current: <img src="{{ student.image.url }}" alt="" width="120">
+            <input type="image" name="image" id="id_image" >
+            <label for="id_image"><small>Նկար</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form">
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form">
+          </p>
+        </form>
+    </div>
+{% endblock %}

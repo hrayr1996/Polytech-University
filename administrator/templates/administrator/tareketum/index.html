@@ -1,0 +1,31 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Ուսանողների ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Ուսանող</th>
+            <th>Խումբը այդ պահին</th>
+            <th>Սեմեստր</th>
+            <th>Ժամկետը (Սեմեստրով)</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for tareketum in tareketums %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ tareketum.id }}"></td>
+                <td>{{ tareketum.student.firstName }} {{ tareketum.student.lastName }}</td>
+                <td>{{ tareketum.group.name }}</td>
+                <td>{{ tareketum.semestr }}</td>
+                <td>{{ tareketum.length }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

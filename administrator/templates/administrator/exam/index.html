@@ -1,0 +1,31 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Քննությունների ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Առարկա</th>
+            <th>Խումբ</th>
+            <th>Տիպը</th>
+            <th>Ամսաթիվ</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for exam in exams %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ exam.id }}"></td>
+                <td>{{ exam.subject }}</td>
+                <td>{{ exam.group }}</td>
+                <td>{{ exam.type }}</td>
+                <td>{{ exam.date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

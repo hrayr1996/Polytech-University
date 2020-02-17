@@ -1,0 +1,79 @@
+<script type="text/javascript">
+     function navBar() {
+         var list = $("tr > td > input[type='checkbox']:checked");
+         if(list.length > 0) {
+             $(".item-control-nav").slideDown();
+         }else{
+             $(".item-control-nav").slideUp();
+         }
+     }
+     function addTableCheckboxData() {
+         var checkboxlist = $(".container table").find("input[type='checkbox']");
+         $(checkboxlist).each(function(key, value){
+             $(value).parent().parent().attr('data-item-id', $(value).val());
+         });
+         navBar();
+     }
+     function checkTableRow(id) {
+         if($("tr[data-item-id='" + id + "'] > td > input[type='checkbox']").prop("checked"))
+             $("tr[data-item-id='" + id + "']").addClass('checked').addClass('bg-primary');
+         else
+             $("tr[data-item-id='" + id + "']").removeClass('checked ').removeClass('bg-primary');
+         navBar();
+     }
+     $(document).ready(function(){
+         addTableCheckboxData();
+         $(document).on("click", "tr > td > input[type='checkbox']", function(e){
+             //e.preventDefault();
+             var id = $(this).val();
+             checkTableRow(id);
+         });
+         $(document).on("click", "tr", function(e){
+             var checkbox = $(this).find("input[type='checkbox']");
+             if(checkbox && ($(e.target).is('td') || $(e.target).is('tr'))) {
+                 if($(checkbox).prop("checked")) {
+                     $(checkbox).prop("checked", false);
+                 }else{
+                     $(checkbox).prop("checked", true);
+                 }
+                 checkTableRow($(checkbox).val());
+             }
+         });
+         $(document).on("click", "button[name='edit']", function(e) {
+             var itemList = $("tr > td > input[type='checkbox']:checked");
+             var curURL = window.location.href;
+             var editUrl = curURL.substr(0, curURL.indexOf(".html"))+"/";
+             var params = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+             console.log(itemList);
+             $(itemList).each(function(key, value){
+                 var randomnumber = Math.floor((Math.random()*100)+1);
+                 window.open(editUrl + $(value).val() + "/խմբագրել․html", "_blank",'PopUp',randomnumber);
+             });
+         });
+         $(document).on("click", "button[name='delete']", function(e) {
+             var itemList = $("tr > td > input[type='checkbox']:checked");
+             var curURL = window.location.href;
+             var delUrl = curURL.substr(0, curURL.indexOf(".html"))+"/ջնջել.html";
+             var params = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+             console.log(itemList);
+             var items = [];
+             $(itemList).each(function(key, value){
+                 items.push(value.value);
+             });
+             $.ajax({
+                 url: delUrl,
+                 method: 'POST',
+                 data: {
+                     'items': items,
+                     'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+                 },
+                 dataType: 'json'
+
+             }).success(function(data){
+                 if(data.errors == 'Success'){
+                     location.reload();
+                 }
+             });
+         });
+     });
+</script>

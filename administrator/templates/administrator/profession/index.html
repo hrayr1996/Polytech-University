@@ -1,0 +1,33 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Մասնագիտությունների ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Մասնագիտություն</th>
+            <th>ֆակուլտետ</th>
+            <th>Ժամկետ</th>
+            <th>Առկա/Հեռակա</th>
+            <th>Առարկաներ</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for profession in professions %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ profession.id }}"></td>
+                <td>{{ profession.name }}</td>
+                <td>{{ profession.fakultet }}</td>
+                <td>{{ profession.years }}</td>
+                <td>{% if profession.heraka %}Հեռակա{% else %}Առկա{% endif %}</td>
+                <td><select name="subjects{{ profession.id }}" class="form-control select2_single">{% for subject in profession.subjects.all %}<option value="{{ subject.id }}">{{ subject }}</option>{% endfor %}</select></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

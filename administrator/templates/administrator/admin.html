@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    {% include 'university/base/header.html' %}
+    <style type="text/css">
+        table tbody tr {
+            cursor: pointer;
+        }
+        table tbody tr.checked {
+            background-color: #337ab7;
+            color: #fff;
+        }
+        .item-control-nav {
+            position: fixed;
+            right: 10%;
+            top: 250px;
+        }
+    </style>
+</head>
+<body>
+{% include 'university/view/topbar.html' %}
+{% include 'university/view/header.html' %}
+{% include 'administrator/topnav.html' %}
+<div class="wrapper col3">
+    {% block content %}
+    {% endblock %}
+    <div class="container">
+        {% include 'administrator/includes/pagination.html' %}
+    </div>
+</div>
+{% if is_edit_page is False and is_add_page is False %}<div class="item-control-nav">
+  <button class="btn btn-default" name="edit">Խմբագրել</button>
+  <button class="btn btn-default" name="delete">ջնջել</button>
+</div>
+{% endif %}
+{% include 'university/base/footer.html' %}
+{% include 'administrator/includes/javascript.html' %}
+</body>
+</html>

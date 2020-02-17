@@ -1,0 +1,44 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Խմբագրել ուսանողի տարեկետումը</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+            <select name="currentgroup" id="id_currentgroup">
+                {% for group in groups %}
+                    <option value="{{ group.id }}" {% if tareketum.currentgroup.id == group.id %}selected{% endif %}>{{ group.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_currentgroup"><small>Խումբը այս պահին (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <select name="student" id="id_student">
+                {% for student in students %}
+                    <option value="{{ student.id }}" data-group-id="{{ student.group.id }}" {% if tareketum.student.id == student.id %}selected{% endif %}>{{ student.firstName }} {{ student.lastName }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_student"><small>Ուսանող (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input type="number" name="semestr" id="id_semestr" value="{{ tareketum.semestr }}" size="2">
+            <label for="id_semestr"><small>Սեմեստր (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input type="number" name="length" id="id_length" value="{{ tareketum.semestr }}" size="3">
+            <label for="id_length"><small>Ժամկետ - Քանի սեմեստրով (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form">
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form">
+          </p>
+        </form>
+    </div>
+{% endblock %}

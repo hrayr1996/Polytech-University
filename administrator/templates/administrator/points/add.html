@@ -1,0 +1,52 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Ավելացնել գնահատական</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+              <select name="group" id="id_group" class="select2_single">
+                  {% for group in groups %}
+                      <option value="{{ group.id }}">{{ group.name }}</option>
+                  {% endfor %}
+              </select>
+            <label for="id_group"><small>Խումբ (Պարտադիր*)</small></label>
+          </p>
+          <p>
+              <select name="student" id="id_student" class="select2_single">
+                  {% for student in students %}
+                      <option value="{{ student.id }}" data-group-id="{{ student.group.id }}">{{ student.lastName }} {{ student.firstName }}</option>
+                  {% endfor %}
+              </select>
+            <label for="id_student"><small>Ուսանող (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.value }}
+            <label for="id_value"><small>Գնահատական (Պարտադիր*)</small></label>
+          </p>
+          <p>
+              {{ form.type }}
+            <label for="name"><small>Գնահատման տիպը (Պարտադիր*)</small></label>
+          </p>
+          <p>
+              <select name="exam" id="id_exam">
+                  {% for exam in exams %}
+                      <option value="{{ exam.id }}" data-group-id="{{ exam.group.id }}">{{ exam.name }}</option>
+                  {% endfor %}
+              </select>
+            <label for="name"><small>Քննություն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form">
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form">
+          </p>
+        </form>
+    </div>
+{% endblock %}

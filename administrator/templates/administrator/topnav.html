@@ -1,0 +1,56 @@
+<div class="wrapper col2">
+  <div id="topnav">
+    <ul>
+      <li class="{% if current_url == 'list-students' or current_url == 'add-student' or current_url == 'edit-student' or current_url == 'add-group' or current_url == 'list-groups' or current_url == 'edit-group'  %}active{% endif %}"><a href="{% url 'aministration:list-students' %}">Ուսանող</a>
+        <ul>
+          <li class="{% if current_url == 'add-student' %}active{% endif %}"><a href="{% url 'aministration:add-student' %}">Ավելացնել Ուսանող</a></li>
+          <li class="{% if current_url == 'list-students' %} active{% endif %}"><a href="{% url 'aministration:list-students' %}">Ուսանողների Ցանկ</a></li>
+          <li class="{% if current_url == 'add-group' %}active{% endif %}"><a href="{% url 'aministration:add-group' %}">Ավելացնել Խումբ</a></li>
+          <li class="last{% if current_url == 'list-groups' %} active{% endif %}"><a href="{% url 'aministration:list-groups' %}">Խմբերի Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'list-professions' or current_url == 'add-profession' or current_url == 'add-fakultet' or current_url == 'list-fakultets' or current_url == 'edit-profession' or current_url == 'edit-fakultet' %}active{% endif %}"><a href="{% url 'aministration:list-fakultets' %}">Ֆակուլտետ</a>
+        <ul>
+          <li class="{% if current_url == 'add-profession' %}active{% endif %}"><a href="{% url 'aministration:add-profession' %}">Ավելացնել Մասնագիտություն</a></li>
+          <li class="{% if current_url == 'list-professions' %} active{% endif %}"><a href="{% url 'aministration:list-professions' %}">Մասնագիտությունների Ցանկ</a></li>
+          <li class="{% if current_url == 'add-fakultet' %}active{% endif %}"><a href="{% url 'aministration:add-fakultet' %}">Ավելացնել Ֆակուլտետ</a></li>
+          <li class="last{% if current_url == 'list-fakultets' %} active{% endif %}"><a href="{% url 'aministration:list-fakultets' %}">Ֆակուլտետների Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'list-staff' or current_url == 'add-worker' or current_url == 'edit-worker' or current_url == 'add-subject' or current_url == 'edit-subject' or current_url == 'list-subjects' %}active{% endif %}"><a href="{% url 'aministration:list-staff' %}">Համալսարան</a>
+        <ul>
+          <li class="{% if current_url == 'add-worker' %} active{% endif %}"><a href="{% url 'aministration:add-worker' %}">Ավելացնել աշխատող</a></li>
+          <li class="{% if current_url == 'list-staff' %} active{% endif %}"><a href="{% url 'aministration:list-staff' %}">Աշխատողների Ցանկ</a></li>
+          <li class="{% if current_url == 'add-subject' %} active{% endif %}"><a href="{% url 'aministration:add-subject' %}">Ավելացնել Առարկա</a></li>
+          <li class="{% if current_url == 'list-subjects' %} active{% endif %}"><a href="{% url 'aministration:list-subjects' %}">Առարկաների Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'add-ambion' or current_url == 'list-ambions' or current_url == 'edit-ambion' %}active{% endif %}"><a href="{% url 'aministration:list-ambions' %}">Ամբիոն</a>
+        <ul>
+          <li class="{% if current_url == 'add-ambion' %} active{% endif %}"><a href="{% url 'aministration:add-ambion' %}">Ավելացնել</a></li>
+          <li class="last{% if current_url == 'list-ambions' %} active{% endif %}"><a href="{% url 'aministration:list-ambions' %}">Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'list-matyans' or current_url == 'add-matyan' or current_url == 'edit-matyan' %}active{% endif %}"><a href="{% url 'aministration:list-matyans' %}">Մատյան</a>
+        <ul>
+          <li class="{% if current_url == 'add-matyan' %}active{% endif %}"><a href="{% url 'aministration:add-matyan' %}">Ավելացնել</a></li>
+          <li class="last{% if current_url == 'list-matyans' %} active{% endif %}"><a href="{% url 'aministration:list-matyans' %}">Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'list-tareketum' or current_url == 'add-tareketum' or current_url == 'edit-tareketum' %}active{% endif %}"><a href="{% url 'aministration:list-tareketum' %}">Տարեկետում</a>
+        <ul>
+          <li class="{% if current_url == 'add-tareketum' %}active{% endif %}"><a href="{% url 'aministration:add-tareketum' %}">Ավելացնել</a></li>
+          <li class="last{% if current_url == 'list-tareketum' %} active{% endif %}"><a href="{% url 'aministration:list-tareketum' %}">Ցանկ</a></li>
+        </ul>
+      </li>
+      <li class="{% if current_url == 'list-points' or current_url == 'edit-point' or current_url == 'add-point' or current_url == 'add-exam' or current_url == 'list-exams' or current_url == 'edit-exam' %}active{% endif %}"><a href="{% url 'aministration:list-points' %}">Գնահատական</a>
+        <ul>
+          <li class="{% if current_url == 'add-point' %}active{% endif %}"><a href="{% url 'aministration:add-point' %}">Ավելացնել Գնահատական</a></li>
+          <li class="{% if current_url == 'list-points' %} active{% endif %}"><a href="{% url 'aministration:list-points' %}">Գնահատականների Ցանկ</a></li>
+          <li class="{% if current_url == 'add-exam' %}active{% endif %}"><a href="{% url 'aministration:add-exam' %}">Ավելացնել քննություն</a></li>
+          <li class="last{% if current_url == 'list-exams' %} active{% endif %}"><a href="{% url 'aministration:list-exams' %}">Քննությունների Ցանկ</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

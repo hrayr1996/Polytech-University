@@ -1,0 +1,32 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Ավելացնել Աշխատող/Դասախոս</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+            {{ form.fullname }}
+            <label for="id_fullname"><small>Անուն Ազգանուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.workstarteddate }}
+            <label for="id_workstarteddate"><small>Ընդունվել է աշխատանքի (Պարտադիր*)</small></label>
+          </p>
+          <p>
+              <label for="id_type"><small>Աշխատում է որպես՝ (Պարտադիր*)</small></label>
+              {{ form.type }}
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form">
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form">
+          </p>
+        </form>
+    </div>
+{% endblock %}

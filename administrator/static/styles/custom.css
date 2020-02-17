@@ -1,0 +1,8 @@
+button.log-out {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+button.log-out:hover {
+    color: rgb(224, 224, 224);
+}

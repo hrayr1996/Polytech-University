@@ -1,0 +1,29 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Ուսանողների ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Անուն Ազգանուն</th>
+            <th>Աշխատում է`</th>
+            <th>Ընդունվել է աշխատանքի</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for worker in staff %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ worker.id }}"></td>
+                <td>{{ worker.fullname }}</td>
+                <td>{{ worker.type }}</td>
+                <td>{{ worker.workstarteddate }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

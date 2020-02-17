@@ -1,0 +1,82 @@
+{% if not user.is_authenticated %}
+{% load i18n %}
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>Nullamlacus dui ipsum</h2>
+        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+      </div>
+      <div class="topbox">
+        <h2>Teachers Login Here</h2>
+        <form action="{% url 'account_login' %}" method="post">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="id_login">Username:
+              <input type="text" name="login" id="id_login" value="" />
+            </label>
+            <label for="id_password">Password:
+              <input type="password" name="password" id="id_password" value="" />
+            </label>
+            <label for="id_remember">
+              <input class="checkbox" type="checkbox" name="remember" id="id_remember" checked="checked" />
+              Remember me</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Log In Here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Administration</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+{% else %}
+<form action="/accounts/logout/" method="post" id="logout-form">{% csrf_token %}</form>
+<div class="wrapper col0">
+  <div id="topbar">
+        {% if form.errors or messages %}
+    <div id="slidepanel" style="display: block;">
+        {% if not messages and form.errors %}
+        <div class="topbox">{{ form.errors }}</div>
+        {% endif %}
+        <div class="topbox">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+        {% endif %}
+    <div id="loginpanel">
+      <ul>
+        {% if form.errors or messages %}
+        <li class="left">Բարև {{ user.first_name }},</li>
+        <li class="right" id="toggle"><button class="log-out" form="logout-form" type="submit" style="display: none;">Դուրս գալ&raquo;</button><button class="log-out" id="closeit" href="#slidepanel">Փակել</button></li>
+            {% else %}
+        <li class="left">Բարև {{ user.first_name }},</li>
+        <li class="right" id="toggle"><button class="log-out" form="logout-form" type="submit">Դուրս գալ&raquo;</button><button class="log-out" id="closeit" style="display: none;" href="#slidepanel">Փակել</button></li>
+        {% endif %}
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,64 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Ավելացնել ուսանող</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+            {{ form.firstName }}
+            <label for="id_firstname"><small>Անուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.lastName }}
+            <label for="id_lastname"><small>Ազգանուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.hayranun }}
+            <label for="id_hayranun"><small>Հայրանուն (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.group }}
+            <label for="id_group"><small>Խումբ (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.birthday }}
+            <label for="id_birthday"><small>Ծննդյան ամսաթիվ</small></label>
+          </p>
+          <p>
+            {{ form.joindate }}
+            <label for="id_joindate"><small>Ընդունման ամսաթիվ</small></label>
+          </p>
+          <p>
+            {{ form.email }}
+            <label for="id_email"><small>Էլ-Փոստ</small></label>
+          </p>
+          <p>
+            {{ form.phone }}
+            <label for="id_phone"><small>Հեռախոսահամար</small></label>
+          </p>
+          <p>
+            {{ form.studyprice }}
+            <label for="id_studyprice"><small>Վճար</small></label>
+          </p>
+          <p>
+            {{ form.petpatver }}
+            <label for="id_petpatver"><small>Պետպատվեր</small></label>
+          </p>
+          <p>
+            {{ form.image }}
+            <label for="id_image"><small>Նկար</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Պահպանել">
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Զրոյացնել ձևաչափը">
+          </p>
+        </form>
+    </div>
+{% endblock %}

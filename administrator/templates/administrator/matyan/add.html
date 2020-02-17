@@ -1,0 +1,39 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+        <h2>Ավելացնել Բացակայություն</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div id="respond" class="container">
+        <form action="" method="post">{% csrf_token %}
+          <p>
+              {{ form.group }}
+            <label for="id_group"><small>Խումբ (Պարտադիր*)</small></label>
+          </p>
+            <p>
+                {{ form.student }}
+                <label for="id_student"><small>Ուսանող (Պարտադիր*)</small></label>
+            </p>
+            <p>
+            {{ form.loose }}
+            <label for="id_loose"><small>Բացակայվել է (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.minute }}
+            <label for="id_minute"><small>րոպեով (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            {{ form.date }}
+            <label for="id_date"><small>օրը (Պարտադիր*)</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form">
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form">
+          </p>
+        </form>
+    </div>
+{% endblock %}

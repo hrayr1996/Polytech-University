@@ -1,0 +1,27 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Ֆակուլտետների ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Անուն (Հապավում)</th>
+            <th>Դեկան</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for fakultet in fakultets %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ fakultet.id }}"></td>
+                <td>{{ fakultet.name }} ({{ fakultet.shortname }})</td>
+                <td>{{ fakultet.dekan.fullname }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

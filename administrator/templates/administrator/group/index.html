@@ -1,0 +1,31 @@
+{% extends 'administrator/admin.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+    <h2>Խմբերի ցանկ</h2>
+        <br>
+      <table summary="Summary Here" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No:</th>
+            <th>Անուն</th>
+            <th>Մասնագիտություն</th>
+            <th>Ստեղծվել է</th>
+            <th>Դասախոսներ</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for group in groups %}
+            <tr class="{% if forloop.counter0|divisibleby:2 %}light{% else %}dark{% endif %}">
+                <td>{{ forloop.counter }}. <input type="checkbox" name="items" value="{{ group.id }}"></td>
+                <td>{{ group.name }}</td>
+                <td>{{ group.profession.name }}</td>
+                <td>{{ group.created }}</td>
+                <td><select name="lecturers" class="form-control select2_single">{% for l in group.lecturers.all %}<option value="{{ l.id }}">{{ l.fullname }}</option>{% endfor %}</select></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

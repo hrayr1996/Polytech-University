@@ -1,0 +1,16 @@
+{% extends 'university/base/base.html' %}
+{% block content %}
+{% load i18n %}
+<div class="col-lg-6 col-sm-6 col-xs-12">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+    </form>
+</div>
+    <div class="clearfix"></div>
+{% endblock %}
